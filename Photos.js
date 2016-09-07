@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 // 3rd party libraries
 import { Actions, Router, Scene } from 'react-native-router-flux';
@@ -14,8 +14,8 @@ const scenes = Actions.create(
   </Scene>
 );
 
-export default class Photos extends Component {
-  render() {
-    return <Router scenes={scenes} />;
-  }
-}
+const Photos = function Photos() {
+  return <Router scenes={scenes} />;
+};
+
+export default Photos;
