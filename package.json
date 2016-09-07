@@ -11,9 +11,11 @@
     "react-native-i18n": "^0.1.1",
     "react-native-image-crop-picker": "^0.8.0",
     "react-native-navbar": "^1.5.0",
+    "react-native-passcode-auth": "^1.0.0",
     "react-native-photo-browser": "^0.2.2",
     "react-native-router-flux": "^3.35.0",
     "react-native-share": "^1.0.13",
+    "react-native-touch-id": "^2.0.3",
     "react-native-vector-icons": "^2.1.0",
     "underscore": "^1.8.3"
   },

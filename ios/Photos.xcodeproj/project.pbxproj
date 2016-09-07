@@ -32,10 +32,12 @@
 		AAFD701B1D7F2BB700FDBF41 /* QBImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAFD70191D7F2BB700FDBF41 /* QBImagePicker.framework */; };
 		AAFD701C1D7F2BB700FDBF41 /* RSKImageCropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAFD701A1D7F2BB700FDBF41 /* RSKImageCropper.framework */; };
 		AC7F8D27A4D4407F807BB818 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68C818923B994BD4AE4B4143 /* Entypo.ttf */; };
+		B1F26BCCBFFA45AB9188FA93 /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1326498085284381B4DFA883 /* libTouchID.a */; };
 		BA13922DAA3049B39A1A0D57 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B346C9C4CDFF4C3686F55D8A /* Zocial.ttf */; };
 		C34A36C848134BF18AFF20D8 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69D5547CA02F4FA998B308CB /* Octicons.ttf */; };
 		C48F4E4291E1445796369DE0 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E603ACEEAE2C4022BC05DF3C /* libRNVectorIcons.a */; };
 		DCCC9363E48C4D928CED5438 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFF44F179A504A05B26807C6 /* Foundation.ttf */; };
+		E04B82D3714C40B3A27B8FB0 /* libPasscodeAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 004FEC77E2CB439B8D1A0612 /* libPasscodeAuth.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,10 +146,25 @@
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
 		};
+		AAFD708B1D7FD95D00FDBF41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 580A2A7C79E744FAA8A6CF72 /* TouchID.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = TouchID;
+		};
+		AAFD70A11D7FD9A500FDBF41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD4946012C3C4221B2FD0B25 /* PasscodeAuth.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = PasscodeAuth;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		003B4172777B4777892B656E /* libRNI18n.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNI18n.a; sourceTree = "<group>"; };
+		004FEC77E2CB439B8D1A0612 /* libPasscodeAuth.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libPasscodeAuth.a; sourceTree = "<group>"; };
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
@@ -157,6 +174,7 @@
 		00E356EE1AD99517003FC87E /* PhotosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PhotosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotosTests.m; sourceTree = "<group>"; };
+		1326498085284381B4DFA883 /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Photos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photos.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +188,7 @@
 		1BCA07468B7B4E24A39FFF5C /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		3B630C6043A0407FAD6719CE /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		41DD283E07B048C5A0ACAB1C /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		580A2A7C79E744FAA8A6CF72 /* TouchID.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = TouchID.xcodeproj; path = "../node_modules/react-native-touch-id/TouchID.xcodeproj"; sourceTree = "<group>"; };
 		5A98442AB1DF4177A35FAC97 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		5F42E69575A74E188EAA9611 /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = imageCropPicker.xcodeproj; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; };
 		68C818923B994BD4AE4B4143 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
@@ -181,6 +200,7 @@
 		AAFD70191D7F2BB700FDBF41 /* QBImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QBImagePicker.framework; sourceTree = "<group>"; };
 		AAFD701A1D7F2BB700FDBF41 /* RSKImageCropper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RSKImageCropper.framework; sourceTree = "<group>"; };
 		B346C9C4CDFF4C3686F55D8A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		BD4946012C3C4221B2FD0B25 /* PasscodeAuth.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = PasscodeAuth.xcodeproj; path = "../node_modules/react-native-passcode-auth/PasscodeAuth.xcodeproj"; sourceTree = "<group>"; };
 		C427ED9EECC84D6381F9C93D /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		E603ACEEAE2C4022BC05DF3C /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		EFF44F179A504A05B26807C6 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -214,6 +234,8 @@
 				4F92438ED3934F67B539EF6A /* libRNI18n.a in Frameworks */,
 				9FA18C995C6C4AE5A0A61081 /* libimageCropPicker.a in Frameworks */,
 				C48F4E4291E1445796369DE0 /* libRNVectorIcons.a in Frameworks */,
+				B1F26BCCBFFA45AB9188FA93 /* libTouchID.a in Frameworks */,
+				E04B82D3714C40B3A27B8FB0 /* libPasscodeAuth.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +361,8 @@
 				862F76CE5C5342A7AED0135C /* RNI18n.xcodeproj */,
 				5F42E69575A74E188EAA9611 /* imageCropPicker.xcodeproj */,
 				5A98442AB1DF4177A35FAC97 /* RNVectorIcons.xcodeproj */,
+				580A2A7C79E744FAA8A6CF72 /* TouchID.xcodeproj */,
+				BD4946012C3C4221B2FD0B25 /* PasscodeAuth.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -404,6 +428,22 @@
 			isa = PBXGroup;
 			children = (
 				AAFD706A1D7F34A700FDBF41 /* libRNVectorIcons.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAFD707A1D7FD95D00FDBF41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAFD708C1D7FD95D00FDBF41 /* libTouchID.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAFD709D1D7FD9A500FDBF41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAFD70A21D7FD9A500FDBF41 /* libPasscodeAuth.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -494,6 +534,10 @@
 					ProjectRef = 5F42E69575A74E188EAA9611 /* imageCropPicker.xcodeproj */;
 				},
 				{
+					ProductGroup = AAFD709D1D7FD9A500FDBF41 /* Products */;
+					ProjectRef = BD4946012C3C4221B2FD0B25 /* PasscodeAuth.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
@@ -540,6 +584,10 @@
 				{
 					ProductGroup = AAFD70591D7F34A700FDBF41 /* Products */;
 					ProjectRef = 5A98442AB1DF4177A35FAC97 /* RNVectorIcons.xcodeproj */;
+				},
+				{
+					ProductGroup = AAFD707A1D7FD95D00FDBF41 /* Products */;
+					ProjectRef = 580A2A7C79E744FAA8A6CF72 /* TouchID.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -649,6 +697,20 @@
 			remoteRef = AAFD70691D7F34A700FDBF41 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		AAFD708C1D7FD95D00FDBF41 /* libTouchID.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTouchID.a;
+			remoteRef = AAFD708B1D7FD95D00FDBF41 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AAFD70A21D7FD9A500FDBF41 /* libPasscodeAuth.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPasscodeAuth.a;
+			remoteRef = AAFD70A11D7FD9A500FDBF41 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -750,6 +812,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Photos.app/Photos";
@@ -766,6 +830,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -789,6 +855,8 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
+					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 				);
 				INFOPLIST_FILE = Photos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -818,6 +886,8 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
+					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 				);
 				INFOPLIST_FILE = Photos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -873,6 +943,8 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
+					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -916,6 +988,8 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
+					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

@@ -7,8 +7,10 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
+import PasscodeAuth from 'react-native-passcode-auth';
 import PhotoBrowser from 'react-native-photo-browser';  // eslint-disable-line
 import Share from 'react-native-share';
+import TouchID from 'react-native-touch-id';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +19,7 @@ const styles = StyleSheet.create({
 });
 
 export default class PhotoBrowserView extends React.Component {
+
   onShare(media, index) {
     console.log(media, index);
     Share.open({
@@ -29,11 +32,39 @@ export default class PhotoBrowserView extends React.Component {
     });
   }
 
+  backHandler() {
+    const reason = 'You need to be the owner of the device.';
+
+    TouchID.isSupported()
+      .then(() => {
+        // Success code
+        console.log('TouchID is supported.');
+        TouchID.authenticate(reason)
+          .then(success => {
+            console.log('Authenticated Successfully', success);
+            Actions.main();
+          })
+          .catch(error => {
+            console.log('Authentication Failed', error);
+          });
+      })
+      .catch(() => {
+        PasscodeAuth.authenticate(reason)
+        .then(success => {
+          console.log('Authenticated Successfully', success);
+          Actions.main();
+        })
+        .catch(eerror => {
+          console.log('Authentication Failed', eerror);
+        });
+      });
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <PhotoBrowser
-          onBack={Actions.pop}
+          onBack={() => this.backHandler()}
           mediaList={this.props.images}
           initialIndex={this.props.initialIndex}
           displayNavArrows={true}

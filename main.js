@@ -156,11 +156,11 @@ export default class MainView extends Component {
             {this.state.images.map((item, i) => <TouchableHighlight
               key={i}
               style={styles.imageTouch}
-              onPress={() => that.setState({ selectedImage: item })}
+              onPress={() => that.setState({ selectedImage: that.state.selectedImage !== item ? item : {} })}
               underlayColor="white"
             >
               <Image
-                style={[styles.image, that.state.selectedImage.path === item.path ? styles.selectedImage : null]}
+                style={[styles.image, _.isEqual(that.state.selectedImage, item) ? styles.selectedImage : null]}
                 source={{ uri: item.path }}
               />
             </TouchableHighlight>

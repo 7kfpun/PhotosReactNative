@@ -9,8 +9,8 @@ import PhotoBrowserView from './photo-browser';
 
 const scenes = Actions.create(
   <Scene key="root">
-    <Scene key="main" title={'Photos'} component={MainView} hideNavBar={true} initial={true} />
-    <Scene key="photoBrowser" title={'Photos'} component={PhotoBrowserView} hideNavBar={true} />
+    <Scene key="main" title={'Photos'} component={MainView} hideNavBar={true} initial={true} type="reset" />
+    <Scene key="photoBrowser" title={'Photos'} component={PhotoBrowserView} hideNavBar={true} type="reset" />
   </Scene>
 );
 
