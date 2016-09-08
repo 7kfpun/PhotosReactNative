@@ -7,6 +7,7 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
+import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import PasscodeAuth from 'react-native-passcode-auth';
 import PhotoBrowser from 'react-native-photo-browser';  // eslint-disable-line
 import Share from 'react-native-share';
@@ -61,6 +62,7 @@ export default class PhotoBrowserView extends React.Component {
   }
 
   render() {
+    GoogleAnalytics.trackScreenView('photo-browser');
     return (
       <View style={styles.container}>
         <PhotoBrowser
