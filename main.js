@@ -12,20 +12,18 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
+import CameraRollPicker from 'react-native-camera-roll-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ImagePicker from 'react-native-image-crop-picker';
 import NavigationBar from 'react-native-navbar';
-
-import _ from 'underscore';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   navigatorBarIOS: {
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#212121',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#DBDBDB',
+    borderBottomColor: '#424242',
   },
   navigatorLeftButton: {
     paddingTop: 10,
@@ -43,44 +41,26 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   imageBlock: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  imageTouch: {
-    width: (Dimensions.get('window').width / 4) - 1.5,
-    height: (Dimensions.get('window').width / 4) - 1.5,
-    margin: 0.5,
-  },
-  image: {
-    width: (Dimensions.get('window').width / 4) - 1.5,
-    height: (Dimensions.get('window').width / 4) - 1.5,
-    resizeMode: 'cover',
-    margin: 0.5,
-  },
-  addBlock: {
-    backgroundColor: '#EEEEEE',
-    borderColor: '#CCCCCC',
-    borderWidth: StyleSheet.hairlineWidth,
+    margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 1,
   },
-  selectedImage: {
-    borderWidth: StyleSheet.hairlineWidth * 5,
-    borderColor: '#9C27B0',
+  image: {
+    width: Dimensions.get('window').width / 3,
+    height: Dimensions.get('window').width / 3,
+    resizeMode: 'cover',
   },
   footer: {
     height: 55,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#212121',
     justifyContent: 'center',
     alignItems: 'center',
     borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: '#DBDBDB',
+    borderTopColor: '#424242',
   },
   text: {
     fontSize: 12,
-    color: '#1A1A1A',
+    color: 'white',
   },
   startText: {
     fontSize: 16,
@@ -94,86 +74,66 @@ export default class MainView extends Component {
 
     this.state = {
       images: [],
-      selectedImage: {},
     };
   }
 
-  pickPhotos() {
-    ImagePicker.openPicker({
-      multiple: true,
-    }).then((images) => {
-      console.log(images);
-      let mergedImages = this.state.images.concat(images.map((item) => Object.assign({ photo: item.path }, item)));
-      mergedImages = _.uniq(mergedImages, false);
-      this.setState({
-        images: mergedImages,
-      });
-    });
+  componentDidMount() {
+
   }
 
-  deleteSelectedImage() {
-    const that = this;
-    if (!_.isEmpty(this.state.selectedImage)) {
-      const imagesRemoved = this.state.images.filter((item) => item.path !== that.state.selectedImage.path);
-      this.setState({
-        images: imagesRemoved,
-        selectedImage: {},
-      });
-    }
+  getSelectedImages(images) {
+    console.log(images);
+    this.setState({ images: images.map((item) => Object.assign({ photo: item.uri }, item)) });
   }
 
   renderToolbar() {
     if (Platform.OS === 'ios') {
       return (
         <NavigationBar
-          statusBar={{ tintColor: '#F5F5F5', style: 'default' }}
+          statusBar={{ tintColor: '#212121', style: 'light-content' }}
           style={styles.navigatorBarIOS}
-          title={{ title: this.props.title, tintColor: '#1A1A1A' }}
-          rightButton={_.isEmpty(this.state.selectedImage) ? <Icon
-            style={styles.navigatorRightButton}
-            name="ios-trash-outline"
-            size={0}
-            color="white"
-          /> : <Icon
-            style={styles.navigatorRightButton}
-            name="ios-trash-outline"
-            size={24}
-            color="#9C27B0"
-            onPress={() => this.deleteSelectedImage()}
-          />}
+          title={{ title: this.props.title, tintColor: '#F5F5F5' }}
+        />
+      );
+    } else if (Platform.OS === 'android') {
+      return (
+        <Icon.ToolbarAndroid
+          style={styles.toolbar}
+          title={this.props.title}
+          titleColor="#4A4A4A"
+          actions={[
+            { title: '', iconName: 'timeline', iconSize: 26, show: 'always' },
+          ]}
+          onActionSelected={(position) => this.onActionSelected(position)}
         />
       );
     }
   }
 
   render() {
-    const that = this;
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
-        <ScrollView>
-          <View style={styles.imageBlock}>
-            {this.state.images.map((item, i) => <TouchableHighlight
-              key={i}
-              style={styles.imageTouch}
-              onPress={() => that.setState({ selectedImage: that.state.selectedImage !== item ? item : {} })}
-              underlayColor="white"
-            >
-              <Image
-                style={[styles.image, _.isEqual(that.state.selectedImage, item) ? styles.selectedImage : null]}
-                source={{ uri: item.path }}
-              />
-            </TouchableHighlight>
-            )}
 
-            <TouchableHighlight onPress={() => this.pickPhotos()} underlayColor="white">
-              <View style={[styles.imageTouch, styles.addBlock]}>
-                <Icon name="ios-add-circle-outline" size={32} color="#808080" />
-                <Text style={[styles.text, { color: '#808080' }]}>Add</Text>
-              </View>
-            </TouchableHighlight>
-          </View>
+        <ScrollView style={{ paddingHorizontal: 5, height: (Dimensions.get('window').width / 3) + 10, backgroundColor: '#424242' }} horizontal={true}>
+          {this.state.images.length > 0 && this.state.images.map((item, i) => <View key={i} style={styles.imageBlock}>
+            <Image
+              style={styles.image}
+              source={{ uri: item.uri || 'https://66.media.tumblr.com/730ada421683ce9980c04dcd765bdcb1/tumblr_o2cp9zi2EW1qzayuxo9_1280.jpg' }}
+            />
+          </View>)}
+
+          {this.state.images.length === 0 && <View style={{ width: Dimensions.get('window').width - 10, justifyContent: 'center', alignItems: 'center' }}><Text>Select some photos</Text></View>}
         </ScrollView>
+
+        <View>
+          <CameraRollPicker
+            key={this.state.key}
+            callback={(images) => this.getSelectedImages(images)}
+            imagesPerRow={4}
+            backgroundColor="#212121"
+          />
+        </View>
 
         <TouchableHighlight
           style={styles.footer}
@@ -184,7 +144,7 @@ export default class MainView extends Component {
           }}
           underlayColor="white"
         >
-          <Text style={styles.startText}>Go!</Text>
+          <Text style={styles.startText}>Start your Photo Gallery</Text>
         </TouchableHighlight>
       </View>
     );

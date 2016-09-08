@@ -7,9 +7,10 @@
   },
   "dependencies": {
     "react": "15.3.1",
-    "react-native": "0.32.0",
+    "react-native": "^0.32.1",
+    "react-native-actionsheet": "^2.0.3",
+    "react-native-camera-roll-picker": "^1.1.7",
     "react-native-i18n": "^0.1.1",
-    "react-native-image-crop-picker": "^0.8.0",
     "react-native-navbar": "^1.5.0",
     "react-native-passcode-auth": "^1.0.0",
     "react-native-photo-browser": "^0.2.2",
