@@ -139,6 +139,9 @@ export default class MainView extends Component {
           callback={(images) => this.getSelectedImages(images)}
           imagesPerRow={4}
           backgroundColor="#212121"
+          maximum={100}
+          selected={this.state.images}
+          // selectedMarker={<View style={{ backgroundColor: 'transparent' }}><Icon name="ios-checkmark-circle-outline" size={26} color="white" /></View>}
         />
 
         <TouchableHighlight
