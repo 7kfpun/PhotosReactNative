@@ -4,8 +4,8 @@ import React from 'react';
 import { Actions, Router, Scene } from 'react-native-router-flux';
 
 // Views
-import MainView from './main';
-import PhotoBrowserView from './photo-browser';
+import MainView from './app/main';
+import PhotoBrowserView from './app/photo-browser';
 
 const scenes = Actions.create(
   <Scene key="root">
