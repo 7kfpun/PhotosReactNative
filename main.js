@@ -101,6 +101,13 @@ export default class MainView extends Component {
           statusBar={{ tintColor: '#212121', style: 'light-content' }}
           style={styles.navigatorBarIOS}
           title={{ title: this.props.title, tintColor: '#F5F5F5' }}
+          rightButton={{
+            title: 'Clear all',
+            handler: () => {
+              this.setState({ images: [] });
+              store.save('images', []);
+            },
+          }}
         />
       );
     } else if (Platform.OS === 'android') {
@@ -127,11 +134,13 @@ export default class MainView extends Component {
           {this.state.images.length > 0 && this.state.images.map((item, i) => <View key={i} style={styles.imageBlock}>
             <Image
               style={styles.image}
-              source={{ uri: item.uri || 'https://66.media.tumblr.com/730ada421683ce9980c04dcd765bdcb1/tumblr_o2cp9zi2EW1qzayuxo9_1280.jpg' }}
+              source={{ uri: item.uri }}
             />
           </View>)}
 
-          {this.state.images.length === 0 && <View style={{ width: Dimensions.get('window').width - 10, justifyContent: 'center', alignItems: 'center' }}><Text>Select some photos</Text></View>}
+          {this.state.images.length === 0 && <View style={{ width: Dimensions.get('window').width - 10, justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ color: 'white' }}>Select some of your photos</Text>
+          </View>}
         </ScrollView>
 
         <CameraRollPicker
