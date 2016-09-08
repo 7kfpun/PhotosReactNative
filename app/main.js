@@ -13,6 +13,7 @@ import {
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
 import CameraRollPicker from 'react-native-camera-roll-picker';
+import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
 import store from 'react-native-simple-store';
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   imageBlock: {
-    margin: 5,
+    marginHorizontal: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -105,7 +106,7 @@ export default class MainView extends Component {
           style={styles.navigatorBarIOS}
           title={{ title: this.props.title, tintColor: '#F5F5F5' }}
           rightButton={{
-            title: 'Clear all',
+            title: this.state.images.length > 0 ? 'Clear all' : '',
             handler: () => {
               this.setState({ images: [] });
               store.save('images', []);
@@ -129,6 +130,7 @@ export default class MainView extends Component {
   }
 
   render() {
+    GoogleAnalytics.trackScreenView('main');
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
@@ -165,7 +167,7 @@ export default class MainView extends Component {
               Actions.photoBrowser({ images: this.state.images });
             }
           }}
-          underlayColor="white"
+          underlayColor="#424242"
         >
           <Text style={styles.startText}>Start your Photo Gallery</Text>
         </TouchableHighlight>
