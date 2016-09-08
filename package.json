@@ -8,13 +8,10 @@
   "dependencies": {
     "react": "15.3.1",
     "react-native": "^0.32.1",
-    "react-native-actionsheet": "^2.0.3",
-    "react-native-activity-view": "^0.2.10",
     "react-native-admob": "^1.1.5",
     "react-native-camera-roll-picker": "^1.1.7",
     "react-native-device-info": "^0.9.5",
     "react-native-google-analytics-bridge": "^3.1.0",
-    "react-native-i18n": "^0.1.1",
     "react-native-navbar": "^1.5.0",
     "react-native-passcode-auth": "git+https://github.com/domoconnell/react-native-passcode-auth.git",
     "react-native-photo-browser": "^0.2.2",
@@ -22,12 +19,11 @@
     "react-native-share": "^1.0.13",
     "react-native-simple-store": "^1.1.0",
     "react-native-touch-id": "^2.0.3",
-    "react-native-vector-icons": "^2.1.0",
-    "underscore": "^1.8.3"
+    "react-native-vector-icons": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "^3.4.0",
-    "eslint-config-airbnb": "^10.0.1",
+    "eslint-config-airbnb": "^11.0.0",
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-react": "^6.2.0"
