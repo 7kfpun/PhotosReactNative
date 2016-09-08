@@ -15,6 +15,7 @@ import { Actions } from 'react-native-router-flux';
 import CameraRollPicker from 'react-native-camera-roll-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
+import store from 'react-native-simple-store';
 
 const styles = StyleSheet.create({
   container: {
@@ -46,8 +47,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: Dimensions.get('window').width / 3,
-    height: Dimensions.get('window').width / 3,
+    width: Dimensions.get('window').width / 2,
+    height: Dimensions.get('window').width / 2,
     resizeMode: 'cover',
   },
   footer: {
@@ -78,12 +79,19 @@ export default class MainView extends Component {
   }
 
   componentDidMount() {
-
+    store.get('images')
+    .then(images => {
+      if (images) {
+        this.setState({ images });
+      }
+    });
   }
 
   getSelectedImages(images) {
     console.log(images);
-    this.setState({ images: images.map((item) => Object.assign({ photo: item.uri }, item)) });
+    const tempImages = images.map((item) => Object.assign({ photo: item.uri }, item));
+    this.setState({ images: tempImages });
+    store.save('images', tempImages);
   }
 
   renderToolbar() {
@@ -115,7 +123,7 @@ export default class MainView extends Component {
       <View style={styles.container}>
         {this.renderToolbar()}
 
-        <ScrollView style={{ paddingHorizontal: 5, height: (Dimensions.get('window').width / 3) + 10, backgroundColor: '#424242' }} horizontal={true}>
+        <ScrollView style={{ paddingHorizontal: 5, backgroundColor: '#424242' }} horizontal={true}>
           {this.state.images.length > 0 && this.state.images.map((item, i) => <View key={i} style={styles.imageBlock}>
             <Image
               style={styles.image}
@@ -126,14 +134,12 @@ export default class MainView extends Component {
           {this.state.images.length === 0 && <View style={{ width: Dimensions.get('window').width - 10, justifyContent: 'center', alignItems: 'center' }}><Text>Select some photos</Text></View>}
         </ScrollView>
 
-        <View>
-          <CameraRollPicker
-            key={this.state.key}
-            callback={(images) => this.getSelectedImages(images)}
-            imagesPerRow={4}
-            backgroundColor="#212121"
-          />
-        </View>
+        <CameraRollPicker
+          key={this.state.key}
+          callback={(images) => this.getSelectedImages(images)}
+          imagesPerRow={4}
+          backgroundColor="#212121"
+        />
 
         <TouchableHighlight
           style={styles.footer}
