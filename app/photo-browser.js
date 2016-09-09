@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
 });
 
 export default class PhotoBrowserView extends React.Component {
-
   onShare(media, index) {
     console.log(media, index);
     Share.open({

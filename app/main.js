@@ -55,6 +55,17 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width / 2,
     resizeMode: 'cover',
   },
+  markerBlock: {
+    backgroundColor: 'rgba(1,1,1,0.6)',
+    alignItems: 'flex-end',
+    borderWidth: StyleSheet.hairlineWidth * 2,
+    borderColor: '#B366FF',
+    width: (Dimensions.get('window').width / 4) - 6,
+    height: (Dimensions.get('window').width / 4) - 6,
+  },
+  marker: {
+    margin: 4,
+  },
   footer: {
     height: 55,
     backgroundColor: '#212121',
@@ -69,7 +80,7 @@ const styles = StyleSheet.create({
   },
   startText: {
     fontSize: 16,
-    color: '#9C27B0',
+    color: '#B366FF',
   },
 });
 
@@ -107,6 +118,7 @@ export default class MainView extends Component {
           title={{ title: this.props.title, tintColor: '#F5F5F5' }}
           rightButton={{
             title: this.state.images.length > 0 ? 'Clear all' : '',
+            tintColor: '#69BBFF',
             handler: () => {
               this.setState({ images: [] });
               store.save('images', []);
@@ -155,7 +167,9 @@ export default class MainView extends Component {
           backgroundColor="#212121"
           maximum={100}
           selected={this.state.images}
-          // selectedMarker={<View style={{ backgroundColor: 'transparent' }}><Icon name="ios-checkmark-circle-outline" size={26} color="white" /></View>}
+          selectedMarker={<View style={styles.markerBlock}>
+            <Icon style={styles.marker} name="ios-checkmark-circle" size={24} color="#B366FF" />
+          </View>}
         />
 
         <AdmobCell />
