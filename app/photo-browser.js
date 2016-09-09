@@ -42,7 +42,7 @@ export default class PhotoBrowserView extends React.Component {
         TouchID.authenticate(reason)
           .then(success => {
             console.log('Authenticated Successfully', success);
-            Actions.main();
+            Actions.pop();
           })
           .catch(error => {
             console.log('Authentication Failed', error);
@@ -52,7 +52,7 @@ export default class PhotoBrowserView extends React.Component {
         PasscodeAuth.authenticate(reason)
         .then(success => {
           console.log('Authenticated Successfully', success);
-          Actions.main();
+          Actions.pop();
         })
         .catch(eerror => {
           console.log('Authentication Failed', eerror);

@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     elevation: 10,
   },
+  preview: {
+    paddingHorizontal: 5,
+    backgroundColor: '#424242',
+  },
   imageBlock: {
     marginHorizontal: 10,
     justifyContent: 'center',
@@ -56,7 +60,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   markerBlock: {
-    backgroundColor: 'rgba(1,1,1,0.6)',
+    backgroundColor: 'rgba(255,255,255,0.3)',
     alignItems: 'flex-end',
     borderWidth: StyleSheet.hairlineWidth * 2,
     borderColor: '#B366FF',
@@ -147,7 +151,7 @@ export default class MainView extends Component {
       <View style={styles.container}>
         {this.renderToolbar()}
 
-        <ScrollView style={{ paddingHorizontal: 5, backgroundColor: '#424242' }} horizontal={true}>
+        <ScrollView style={styles.preview} horizontal={true}>
           {this.state.images.length > 0 && this.state.images.map((item, i) => <View key={i} style={styles.imageBlock}>
             <Image
               style={styles.image}
