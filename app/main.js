@@ -6,7 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  ToolbarAndroid,
+  Modal,
   TouchableHighlight,
   View,
 } from 'react-native';
@@ -15,7 +15,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import CameraRollPicker from 'react-native-camera-roll-picker';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
-// import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
 import store from 'react-native-simple-store';
 
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   toolbar: {
     height: 56,
-    backgroundColor: 'white',
+    backgroundColor: '#0A0A0A',
     elevation: 10,
   },
   preview: {
@@ -141,13 +141,13 @@ export default class MainView extends Component {
       );
     } else if (Platform.OS === 'android') {
       return (
-        <ToolbarAndroid
+        <Icon.ToolbarAndroid
           style={styles.toolbar}
           title={this.props.title}
-          titleColor="#4A4A4A"
-          actions={[
-            { title: 'Clean all', show: 'always' },
-          ]}
+          titleColor="white"
+          actions={
+            this.state.images.length > 0 ? [{ title: 'Clean all', iconName: 'md-trash', iconColor: 'white', show: 'always' }] : []
+          }
           onActionSelected={(position) => this.onActionSelected(position)}
         />
       );
@@ -159,7 +159,6 @@ export default class MainView extends Component {
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
-
         <ScrollView style={styles.preview} horizontal={true}>
           {this.state.images.length > 0 && this.state.images.map((item, i) => <View key={i} style={styles.imageBlock}>
             <Image
