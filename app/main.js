@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  ToolbarAndroid,
   TouchableHighlight,
   View,
 } from 'react-native';
@@ -14,7 +15,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import CameraRollPicker from 'react-native-camera-roll-picker';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
-import Icon from 'react-native-vector-icons/Ionicons';
+// import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
 import store from 'react-native-simple-store';
 
@@ -106,11 +107,22 @@ export default class MainView extends Component {
     });
   }
 
+  onActionSelected(position) {
+    if (position === 0) {  // index of 'Clear all'
+      this.clearImages();
+    }
+  }
+
   getSelectedImages(images) {
     console.log(images);
     const tempImages = images.map((item) => Object.assign({ photo: item.uri }, item));
     this.setState({ images: tempImages });
     store.save('images', tempImages);
+  }
+
+  clearImages() {
+    this.setState({ images: [] });
+    store.save('images', []);
   }
 
   renderToolbar() {
@@ -123,21 +135,18 @@ export default class MainView extends Component {
           rightButton={{
             title: this.state.images.length > 0 ? 'Clear all' : '',
             tintColor: '#69BBFF',
-            handler: () => {
-              this.setState({ images: [] });
-              store.save('images', []);
-            },
+            handler: () => this.clearImages(),
           }}
         />
       );
     } else if (Platform.OS === 'android') {
       return (
-        <Icon.ToolbarAndroid
+        <ToolbarAndroid
           style={styles.toolbar}
           title={this.props.title}
           titleColor="#4A4A4A"
           actions={[
-            { title: '', iconName: 'timeline', iconSize: 26, show: 'always' },
+            { title: 'Clean all', show: 'always' },
           ]}
           onActionSelected={(position) => this.onActionSelected(position)}
         />

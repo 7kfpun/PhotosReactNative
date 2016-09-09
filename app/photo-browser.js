@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  Platform,
   StyleSheet,
   View,
 } from 'react-native';
@@ -33,31 +34,34 @@ export default class PhotoBrowserView extends React.Component {
   }
 
   backHandler() {
-    const reason = 'You need to be the owner of the device.';
-
-    TouchID.isSupported()
-      .then(() => {
-        // Success code
-        console.log('TouchID is supported.');
-        TouchID.authenticate(reason)
+    if (Platform.OS === 'ios') {
+      const reason = 'You need to be the owner of the device.';
+      TouchID.isSupported()
+        .then(() => {
+          // Success code
+          console.log('TouchID is supported.');
+          TouchID.authenticate(reason)
+            .then(success => {
+              console.log('Authenticated Successfully', success);
+              Actions.pop();
+            })
+            .catch(error => {
+              console.log('Authentication Failed', error);
+            });
+        })
+        .catch(() => {
+          PasscodeAuth.authenticate(reason)
           .then(success => {
             console.log('Authenticated Successfully', success);
             Actions.pop();
           })
-          .catch(error => {
-            console.log('Authentication Failed', error);
+          .catch(eerror => {
+            console.log('Authentication Failed', eerror);
           });
-      })
-      .catch(() => {
-        PasscodeAuth.authenticate(reason)
-        .then(success => {
-          console.log('Authenticated Successfully', success);
-          Actions.pop();
-        })
-        .catch(eerror => {
-          console.log('Authentication Failed', eerror);
         });
-      });
+    } else {
+      Actions.pop();
+    }
   }
 
   render() {
@@ -82,7 +86,7 @@ export default class PhotoBrowserView extends React.Component {
 }
 
 PhotoBrowserView.propTypes = {
-  images: React.PropTypes.array,
+  images: React.PropTypes.arrayOf(React.PropTypes.object),
   initialIndex: React.PropTypes.number,
 };
 
