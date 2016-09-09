@@ -172,7 +172,7 @@ export default class MainView extends Component {
           maximum={100}
           selected={this.state.images}
           selectedMarker={<View style={styles.markerBlock}>
-            <Icon style={styles.marker} name="ios-checkmark-circle" size={24} color="#B366FF" />
+            <Image source={require("../assets/checkmark-circle.png")} style={{ margin: 5, height: 20, width: 20 }} />
           </View>}
         />
 

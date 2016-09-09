@@ -9,7 +9,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import PasscodeAuth from 'react-native-passcode-auth';
-import PhotoBrowser from 'react-native-photo-browser';  // eslint-disable-line
+import PhotoBrowser from 'react-native-photo-browser';  // eslint-disable-line import/no-named-as-default,import/no-named-as-default-member
 import Share from 'react-native-share';
 import TouchID from 'react-native-touch-id';
 
