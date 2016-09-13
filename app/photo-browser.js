@@ -8,6 +8,7 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
+import DeviceInfo from 'react-native-device-info';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import PasscodeAuth from 'react-native-passcode-auth';
 import PhotoBrowser from 'react-native-photo-browser';  // eslint-disable-line import/no-named-as-default,import/no-named-as-default-member
@@ -78,7 +79,7 @@ export default class PhotoBrowserView extends React.Component {
           startOnGrid={false}
           enableGrid={true}
           onActionButton={(media, index) => this.onShare(media, index)}
-          itemPerRow={4}
+          itemPerRow={DeviceInfo.getModel().indexOf('iPad') !== -1 ? 8 : 4}
         />
       </View>
     );

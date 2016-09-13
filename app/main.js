@@ -6,7 +6,6 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  Modal,
   TouchableHighlight,
   View,
 } from 'react-native';
@@ -14,6 +13,7 @@ import {
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
 import CameraRollPicker from 'react-native-camera-roll-picker';
+import DeviceInfo from 'react-native-device-info';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
@@ -65,11 +65,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     borderWidth: StyleSheet.hairlineWidth * 2,
     borderColor: '#B366FF',
-    width: (Dimensions.get('window').width / 4) - 6,
-    height: (Dimensions.get('window').width / 4) - 6,
+    width: DeviceInfo.getModel().indexOf('iPad') !== -1 ? (Dimensions.get('window').width / 8) - 6 : (Dimensions.get('window').width / 4) - 6,
+    height: DeviceInfo.getModel().indexOf('iPad') !== -1 ? (Dimensions.get('window').width / 8) - 6 : (Dimensions.get('window').width / 4) - 6,
   },
   marker: {
-    margin: 4,
+    margin: 5,
+    height: 20,
+    width: 20,
   },
   footer: {
     height: 55,
@@ -175,12 +177,12 @@ export default class MainView extends Component {
         <CameraRollPicker
           key={this.state.key}
           callback={(images) => this.getSelectedImages(images)}
-          imagesPerRow={4}
+          imagesPerRow={DeviceInfo.getModel().indexOf('iPad') !== -1 ? 8 : 4}
           backgroundColor="#212121"
           maximum={100}
           selected={this.state.images}
           selectedMarker={<View style={styles.markerBlock}>
-            <Image source={require("../assets/checkmark-circle.png")} style={{ margin: 5, height: 20, width: 20 }} />
+            <Image source={require('../assets/checkmark-circle.png')} style={styles.marker} />
           </View>}
         />
 

@@ -24,8 +24,8 @@ if (DeviceInfo.getDeviceName() === 'iPhone Simulator' || DeviceInfo.getManufactu
 
 const scenes = Actions.create(
   <Scene key="root">
-    <Scene key="main" title={'Photos'} component={MainView} hideNavBar={true} initial={true} />
-    <Scene key="photoBrowser" title={'Photos'} component={PhotoBrowserView} hideNavBar={true} panHandlers={null} />
+    <Scene key="main" title={'Look Lock'} component={MainView} hideNavBar={true} initial={true} />
+    <Scene key="photoBrowser" component={PhotoBrowserView} hideNavBar={true} panHandlers={null} />
   </Scene>
 );
 

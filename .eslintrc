@@ -6,6 +6,7 @@
     "react/jsx-boolean-value": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-console": 0,
-    "consistent-return": 0
+    "consistent-return": 0,
+    "global-require": 0
   }
 }
