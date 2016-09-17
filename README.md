@@ -4,6 +4,10 @@
 
 Look Lock App written in [React Native](https://github.com/facebook/react-native) (available both iOS and Android).
 
+Goodbye to nosy swipers!  
+
+Pick the photos you want to share with your friends on Look Lock before giving away your mobile. Your friends will only see those you picked, and the rest are protected!
+
 ## Demo
 
 [![App Store Button](assets/app-store.png "App Store Button")](https://itunes.apple.com/us/app/look-lock-show-photos-without/id1151863742)
