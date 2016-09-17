@@ -85,5 +85,7 @@
         <string>{320, 568}</string>
       </dict>
     </array>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Photo Library will be added in this App</string>
   </dict>
 </plist>

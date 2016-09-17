@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "react": "15.3.1",
-    "react-native": "^0.32.1",
+    "react-native": "^0.33.0",
     "react-native-admob": "^1.1.5",
     "react-native-camera-roll-picker": "^1.1.7",
     "react-native-device-info": "^0.9.5",

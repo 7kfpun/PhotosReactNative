@@ -25,8 +25,8 @@ export default class PhotoBrowserView extends React.Component {
   onShare(media, index) {
     console.log(media, index);
     Share.open({
-      title: 'Photo shared from Limited Photos',
-      message: 'https://github.com/7kfpun/PhotosReactNative',
+      title: 'Photo shared from Look Lock',
+      message: 'Photo shared from Look Lock',
       url: media.uri,
       // subject: 'Share Link',
     }, (e) => {

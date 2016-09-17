@@ -4,11 +4,11 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
-import cl.json.RNSharePackage;
-import com.sbugert.rnadmob.RNAdMobPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import cl.json.RNSharePackage;
+import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.sbugert.rnadmob.RNAdMobPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -29,11 +29,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNDeviceInfo(),
-            new GoogleAnalyticsBridgePackage(),
+            new VectorIconsPackage(),
             new RNSharePackage(),
-            new RNAdMobPackage(),
-            new VectorIconsPackage()
+            new GoogleAnalyticsBridgePackage(),
+            new RNDeviceInfo(),
+            new RNAdMobPackage()
       );
     }
   };
