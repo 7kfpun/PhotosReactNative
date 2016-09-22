@@ -14,6 +14,7 @@ import {
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
 import CameraRollPicker from 'react-native-camera-roll-picker';
+import Collapsible from 'react-native-collapsible';
 import DeviceInfo from 'react-native-device-info';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -117,14 +118,21 @@ export default class MainView extends Component {
     store.get('images')
     .then(images => {
       if (images) {
-        this.setState({ images });
+        this.setState({
+          images,
+          key: Math.random(),
+        });
       }
     });
   }
 
   onActionSelected(position) {
-    if (position === 0) {  // index of 'Clear all'
+    if (position === 0 && this.state.images.length > 0) {  // index of 'Clear all'
       this.clearImages();
+    } else if (position === 0 && this.state.images.length === 0) {  // index of 'Info'
+      Actions.info();
+    } else if (position === 1) {  // index of 'Info'
+      Actions.info();
     }
   }
 
@@ -151,6 +159,15 @@ export default class MainView extends Component {
           statusBar={{ tintColor: '#212121', style: 'light-content' }}
           style={styles.navigatorBarIOS}
           title={{ title: this.props.title, tintColor: '#F5F5F5' }}
+          leftButton={
+            <Icon
+              style={styles.navigatorLeftButton}
+              name="ios-information-circle-outline"
+              size={26}
+              color="white"
+              onPress={Actions.info}
+            />
+          }
           rightButton={{
             title: this.state.images.length > 0 ? 'Clear all' : '',
             tintColor: '#69BBFF',
@@ -164,8 +181,14 @@ export default class MainView extends Component {
           style={styles.toolbar}
           title={this.props.title}
           titleColor="white"
+          iconColor="white"
           actions={
-            this.state.images.length > 0 ? [{ title: 'Clean all', iconName: 'md-trash', iconColor: 'white', show: 'always' }] : []
+            this.state.images.length > 0 ? [
+              { title: 'Clean all', iconName: 'md-trash', iconColor: 'white', show: 'always' },
+              { title: 'Info', iconName: 'md-information-circle', iconColor: 'white', show: 'always' },
+            ] : [
+              { title: 'Info', iconName: 'md-information-circle', iconColor: 'white', show: 'always' },
+            ]
           }
           onActionSelected={(position) => this.onActionSelected(position)}
         />
@@ -183,6 +206,7 @@ export default class MainView extends Component {
           animationType={"fade"}
           transparent={true}
           visible={this.state.modalVisible}
+          onRequestClose={() => this.setModalVisible(false)}
         >
           <TouchableHighlight
             style={styles.fullPreview}
@@ -218,7 +242,6 @@ export default class MainView extends Component {
         </ScrollView>
 
         <CameraRollPicker
-          key={this.state.key}
           callback={(images) => this.getSelectedImages(images)}
           imagesPerRow={DeviceInfo.getModel().indexOf('iPad') !== -1 ? 8 : 4}
           backgroundColor="#212121"
@@ -231,17 +254,19 @@ export default class MainView extends Component {
 
         <AdmobCell />
 
-        <TouchableHighlight
-          style={styles.footer}
-          onPress={() => {
-            if (this.state.images.length > 0) {
-              Actions.photoBrowser({ images: this.state.images });
-            }
-          }}
-          underlayColor="#424242"
-        >
-          <Text style={styles.startText}>Start your Photo Gallery</Text>
-        </TouchableHighlight>
+        <Collapsible key={this.state.key} collapsed={this.state.images.length === 0}>
+          <TouchableHighlight
+            style={styles.footer}
+            onPress={() => {
+              if (this.state.images.length > 0) {
+                Actions.photoBrowser({ images: this.state.images });
+              }
+            }}
+            underlayColor="#424242"
+          >
+            <Text style={styles.startText}>Start your Photo Gallery</Text>
+          </TouchableHighlight>
+        </Collapsible>
       </View>
     );
   }

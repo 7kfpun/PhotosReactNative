@@ -12,6 +12,7 @@
     "react-native": "^0.33.0",
     "react-native-admob": "^1.1.5",
     "react-native-camera-roll-picker": "^1.1.7",
+    "react-native-collapsible": "^0.7.0",
     "react-native-device-info": "^0.9.5",
     "react-native-google-analytics-bridge": "^3.1.0",
     "react-native-navbar": "^1.5.0",
@@ -21,6 +22,7 @@
     "react-native-share": "^1.0.13",
     "react-native-simple-store": "^1.1.0",
     "react-native-sound": "^0.8.3",
+    "react-native-tableview-simple": "^0.13.0",
     "react-native-vector-icons": "^2.1.0"
   },
   "devDependencies": {
