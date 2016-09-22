@@ -9,6 +9,7 @@ import cl.json.RNSharePackage;
 import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.sbugert.rnadmob.RNAdMobPackage;
+import com.zmxv.RNSound.RNSoundPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -33,7 +34,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNSharePackage(),
             new GoogleAnalyticsBridgePackage(),
             new RNDeviceInfo(),
-            new RNAdMobPackage()
+            new RNAdMobPackage(),
+            new RNSoundPackage()
       );
     }
   };
