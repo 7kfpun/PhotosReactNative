@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "build-android": "npm run release-android; osascript -e 'display notification \"DONE!\" with title \"Android built\"'",
+    "release-android": "cd android && ./gradlew assembleRelease && cd .."
   },
   "dependencies": {
     "react": "15.3.1",
@@ -18,7 +20,6 @@
     "react-native-router-flux": "^3.35.0",
     "react-native-share": "^1.0.13",
     "react-native-simple-store": "^1.1.0",
-    "react-native-touch-id": "^2.0.3",
     "react-native-vector-icons": "^2.1.0"
   },
   "devDependencies": {
