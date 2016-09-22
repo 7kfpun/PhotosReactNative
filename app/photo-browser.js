@@ -3,6 +3,7 @@ import React from 'react';
 import {
   Platform,
   StyleSheet,
+  Vibration,
   View,
 } from 'react-native';
 
@@ -13,7 +14,6 @@ import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import PasscodeAuth from 'react-native-passcode-auth';
 import PhotoBrowser from 'react-native-photo-browser';  // eslint-disable-line import/no-named-as-default,import/no-named-as-default-member
 import Share from 'react-native-share';
-import TouchID from 'react-native-touch-id';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,33 +35,27 @@ export default class PhotoBrowserView extends React.Component {
   }
 
   backHandler() {
+    const vibrateAndPop = () => { Vibration.vibrate(); Actions.pop(); };
+
     if (Platform.OS === 'ios') {
-      const reason = 'You need to be the owner of the device.';
-      TouchID.isSupported()
+      PasscodeAuth.isSupported()
         .then(() => {
-          // Success code
-          console.log('TouchID is supported.');
-          TouchID.authenticate(reason)
-            .then(success => {
-              console.log('Authenticated Successfully', success);
-              Actions.pop();
-            })
-            .catch(error => {
-              console.log('Authentication Failed', error);
-            });
-        })
-        .catch(() => {
+          const reason = 'You need to be the owner of the device.';
           PasscodeAuth.authenticate(reason)
           .then(success => {
             console.log('Authenticated Successfully', success);
-            Actions.pop();
+            vibrateAndPop();
           })
           .catch(eerror => {
             console.log('Authentication Failed', eerror);
           });
+        })
+        .catch(error => {
+          console.log('PasscodeAuth not supported', error);
+          vibrateAndPop();
         });
     } else {
-      Actions.pop();
+      vibrateAndPop();
     }
   }
 
