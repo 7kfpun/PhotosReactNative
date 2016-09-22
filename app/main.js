@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Dimensions,
   Image,
+  Modal,
   Platform,
   ScrollView,
   StyleSheet,
@@ -60,6 +61,17 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width / 2,
     resizeMode: 'cover',
   },
+  fullPreview: {
+    flex: 1,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  fullImage: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    resizeMode: 'cover',
+  },
   markerBlock: {
     backgroundColor: 'rgba(255,255,255,0.3)',
     alignItems: 'flex-end',
@@ -97,6 +109,7 @@ export default class MainView extends Component {
 
     this.state = {
       images: [],
+      modalVisible: false,
     };
   }
 
@@ -113,6 +126,10 @@ export default class MainView extends Component {
     if (position === 0) {  // index of 'Clear all'
       this.clearImages();
     }
+  }
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
   }
 
   getSelectedImages(images) {
@@ -161,12 +178,38 @@ export default class MainView extends Component {
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
+
+        <Modal
+          animationType={"fade"}
+          transparent={true}
+          visible={this.state.modalVisible}
+        >
+          <TouchableHighlight
+            style={styles.fullPreview}
+            onPress={() => this.setModalVisible(!this.state.modalVisible)}
+            onPressIn={() => this.setModalVisible(!this.state.modalVisible)}
+          >
+            <Image
+              style={styles.fullImage}
+              source={{ uri: this.state.selectedImage }}
+            />
+          </TouchableHighlight>
+        </Modal>
+
         <ScrollView style={styles.preview} horizontal={true}>
           {this.state.images.length > 0 && this.state.images.map((item, i) => <View key={i} style={styles.imageBlock}>
-            <Image
-              style={styles.image}
-              source={{ uri: item.uri }}
-            />
+            <TouchableHighlight
+              onPress={() => {
+                this.setModalVisible(true);
+                this.setState({ selectedImage: item.uri });
+              }}
+              underlayColor="#424242"
+            >
+              <Image
+                style={styles.image}
+                source={{ uri: item.uri }}
+              />
+            </TouchableHighlight>
           </View>)}
 
           {this.state.images.length === 0 && <View style={{ width: Dimensions.get('window').width - 10, justifyContent: 'center', alignItems: 'center' }}>
