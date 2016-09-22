@@ -64,14 +64,14 @@ const styles = StyleSheet.create({
   },
   fullPreview: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(0,0,0,0.8)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   fullImage: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
   },
   markerBlock: {
     backgroundColor: 'rgba(255,255,255,0.3)',

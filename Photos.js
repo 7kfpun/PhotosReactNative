@@ -12,6 +12,7 @@ import GoogleAnalytics from 'react-native-google-analytics-bridge';
 // Views
 import MainView from './app/main';
 import PhotoBrowserView from './app/photo-browser';
+import InfoView from './app/info';
 
 import { config } from './app/config';
 
@@ -25,6 +26,7 @@ const scenes = Actions.create(
   <Scene key="root">
     <Scene key="main" title={'Look Lock'} component={MainView} hideNavBar={true} initial={true} />
     <Scene key="photoBrowser" component={PhotoBrowserView} hideNavBar={true} panHandlers={null} />
+    <Scene key="info" component={InfoView} direction="vertical" />
   </Scene>
 );
 
