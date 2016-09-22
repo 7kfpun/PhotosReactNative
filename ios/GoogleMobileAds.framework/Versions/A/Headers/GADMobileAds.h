@@ -12,6 +12,9 @@
 /// Returns the shared GADMobileAds instance.
 + (GADMobileAds *)sharedInstance;
 
+/// Configures the SDK using the settings associated with the given application ID.
++ (void)configureWithApplicationID:(NSString *)applicationID;
+
 /// Disables automated in app purchase (IAP) reporting. Must be called before any IAP transaction is
 /// initiated. IAP reporting is used to track IAP ad conversions. Do not disable reporting if you
 /// use IAP ads.
@@ -32,5 +35,14 @@
 /// method only if your application has its own volume controls (e.g., custom music or sound effect
 /// muting). Defaults to NO.
 @property(nonatomic, assign) BOOL applicationMuted;
+
+/// Returns YES if the current SDK version is at least |major|.|minor|.|patch|. This method can be
+/// used by libraries that depend on a specific minimum version of the Google Mobile Ads SDK to warn
+/// developers if they have an incompatible version.
+///
+/// Available in Google Mobile Ads SDK 7.10 and onwards. Before calling this method check if the
+/// GADMobileAds's shared instance responds to this method. Calling this method on a Google Mobile
+/// Ads SDK lower than 7.10 can crash the app.
+- (BOOL)isSDKVersionAtLeastMajor:(NSInteger)major minor:(NSInteger)minor patch:(NSInteger)patch;
 
 @end
