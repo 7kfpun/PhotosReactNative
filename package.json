@@ -20,6 +20,7 @@
     "react-native-router-flux": "^3.35.0",
     "react-native-share": "^1.0.13",
     "react-native-simple-store": "^1.1.0",
+    "react-native-sound": "^0.8.3",
     "react-native-vector-icons": "^2.1.0"
   },
   "devDependencies": {

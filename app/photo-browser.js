@@ -14,6 +14,7 @@ import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import PasscodeAuth from 'react-native-passcode-auth';
 import PhotoBrowser from 'react-native-photo-browser';  // eslint-disable-line import/no-named-as-default,import/no-named-as-default-member
 import Share from 'react-native-share';
+import Sound from 'react-native-sound';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,7 +36,20 @@ export default class PhotoBrowserView extends React.Component {
   }
 
   backHandler() {
-    const vibrateAndPop = () => { Vibration.vibrate(); Actions.pop(); };
+    const vibrateSoundPop = () => {
+      Vibration.vibrate();
+
+      const sound = new Sound('button.mp3', Sound.MAIN_BUNDLE, (error) => {
+        if (error) {
+          console.log('Error playing sound', error);
+        } else {
+          console.log('duration', sound.getDuration());
+          sound.play();
+        }
+      });
+
+      Actions.pop();
+    };
 
     if (Platform.OS === 'ios') {
       PasscodeAuth.isSupported()
@@ -44,7 +58,7 @@ export default class PhotoBrowserView extends React.Component {
           PasscodeAuth.authenticate(reason)
           .then(success => {
             console.log('Authenticated Successfully', success);
-            vibrateAndPop();
+            vibrateSoundPop();
           })
           .catch(eerror => {
             console.log('Authentication Failed', eerror);
@@ -52,10 +66,10 @@ export default class PhotoBrowserView extends React.Component {
         })
         .catch(error => {
           console.log('PasscodeAuth not supported', error);
-          vibrateAndPop();
+          vibrateSoundPop();
         });
     } else {
-      vibrateAndPop();
+      vibrateSoundPop();
     }
   }
 
