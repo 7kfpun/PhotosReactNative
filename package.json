@@ -15,6 +15,7 @@
     "react-native-camera-roll-picker": "^1.1.8",
     "react-native-collapsible": "^0.7.0",
     "react-native-device-info": "^0.9.5",
+    "react-native-gesture-password": "^0.2.0",
     "react-native-google-analytics-bridge": "^3.1.0",
     "react-native-navbar": "^1.5.1",
     "react-native-passcode-auth": "git+https://github.com/domoconnell/react-native-passcode-auth.git",

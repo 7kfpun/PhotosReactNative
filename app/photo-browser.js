@@ -16,6 +16,9 @@ import PhotoBrowser from 'react-native-photo-browser';  // eslint-disable-line i
 import Share from 'react-native-share';
 import Sound from 'react-native-sound';
 
+// Component
+import AdmobCell from './admob';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -27,7 +30,7 @@ export default class PhotoBrowserView extends React.Component {
     console.log(media, index);
     Share.open({
       title: 'Photo shared from Look Lock',
-      message: 'Photo shared from Look Lock',
+      message: 'Show photos without worries http://onelink.to/kzb9bx ',
       url: media.uri,
       // subject: 'Share Link',
     }, (e) => {
@@ -89,6 +92,8 @@ export default class PhotoBrowserView extends React.Component {
           onActionButton={(media, index) => this.onShare(media, index)}
           itemPerRow={DeviceInfo.getModel().indexOf('iPad') !== -1 ? 8 : 4}
         />
+
+        <AdmobCell />
       </View>
     );
   }

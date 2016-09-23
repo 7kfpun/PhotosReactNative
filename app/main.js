@@ -259,7 +259,11 @@ export default class MainView extends Component {
             style={styles.footer}
             onPress={() => {
               if (this.state.images.length > 0) {
-                Actions.photoBrowser({ images: this.state.images });
+                if (Platform.OS === 'ios') {
+                  Actions.photoBrowser({ images: this.state.images });
+                } else if (Platform.OS === 'android') {
+                  Actions.password({ images: this.state.images });
+                }
               }
             }}
             underlayColor="#424242"
