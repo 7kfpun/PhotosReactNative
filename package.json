@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "build-android": "npm run release-android; osascript -e 'display notification \"DONE!\" with title \"Android built\"'",
-    "release-android": "cd android && ./gradlew assembleRelease && cd .."
+    "release-android": "cd android && ./gradlew assembleRelease && cd ..",
+    "clean-android": "cd android && ./gradlew clean"
   },
   "dependencies": {
     "react": "15.3.1",
