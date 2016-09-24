@@ -16,7 +16,6 @@ import { Actions } from 'react-native-router-flux';
 import CameraRollPicker from 'react-native-camera-roll-picker';
 import Collapsible from 'react-native-collapsible';
 import Device from 'react-native-device-detection';
-import DeviceInfo from 'react-native-device-info';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
@@ -50,8 +49,12 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   preview: {
+    flex: 1,
     paddingHorizontal: 5,
     backgroundColor: '#424242',
+  },
+  rollPicker: {
+    flex: 2,
   },
   imageBlock: {
     marginHorizontal: 10,
@@ -59,8 +62,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: Dimensions.get('window').width / 2,
-    height: Dimensions.get('window').width / 2,
+    width: Dimensions.get('window').width / 3,
+    height: Dimensions.get('window').width / 3,
     resizeMode: 'cover',
   },
   fullPreview: {
@@ -79,8 +82,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     borderWidth: StyleSheet.hairlineWidth * 2,
     borderColor: '#B366FF',
-    width: DeviceInfo.getModel().indexOf('iPad') !== -1 ? (Dimensions.get('window').width / 8) - 6 : (Dimensions.get('window').width / 4) - 6,
-    height: DeviceInfo.getModel().indexOf('iPad') !== -1 ? (Dimensions.get('window').width / 8) - 6 : (Dimensions.get('window').width / 4) - 6,
+    width: Device.isTablet ? (Dimensions.get('window').width / 8) - 6 : (Dimensions.get('window').width / 4) - 6,
+    height: Device.isTablet ? (Dimensions.get('window').width / 8) - 6 : (Dimensions.get('window').width / 4) - 6,
   },
   marker: {
     margin: 5,
@@ -242,16 +245,18 @@ export default class MainView extends Component {
           </View>}
         </ScrollView>
 
-        <CameraRollPicker
-          callback={(images) => this.getSelectedImages(images)}
-          imagesPerRow={Device.isTablet ? 8 : 4}
-          backgroundColor="#212121"
-          maximum={100}
-          selected={this.state.images}
-          selectedMarker={<View style={styles.markerBlock}>
-            <Image source={require('../assets/checkmark-circle.png')} style={styles.marker} />
-          </View>}
-        />
+        <View style={styles.rollPicker}>
+          <CameraRollPicker
+            callback={(images) => this.getSelectedImages(images)}
+            imagesPerRow={Device.isTablet ? 8 : 4}
+            backgroundColor="#212121"
+            maximum={100}
+            selected={this.state.images}
+            selectedMarker={<View style={styles.markerBlock}>
+              <Image source={require('../assets/checkmark-circle.png')} style={styles.marker} />
+            </View>}
+          />
+        </View>
 
         <AdmobCell />
 

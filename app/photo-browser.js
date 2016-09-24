@@ -46,8 +46,7 @@ export default class PhotoBrowserView extends React.Component {
   }
 
   showAdInterstitial() {
-    const adUnitID = Platform.OS === 'ios' ? config.admob.ios.interstital : config.admob.android.interstital;
-    AdMobInterstitial.setAdUnitID(adUnitID);
+    AdMobInterstitial.setAdUnitID(config.admob[Platform.OS].interstital);
     AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd((error) => error && console.log('AdMobInterstitial', error)));
   }
 

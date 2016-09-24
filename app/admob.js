@@ -18,10 +18,9 @@ const styles = StyleSheet.create({
 });
 
 function AdmobCell(props) {
-  const adUnitID = Platform.OS === 'ios' ? config.admob.ios.banner : config.admob.android.banner;
   return (
     <View style={[styles.container, { margin: props.margin }]}>
-      <AdMobBanner bannerSize={props.bannerSize} adUnitID={adUnitID} />
+      <AdMobBanner bannerSize={props.bannerSize} adUnitID={config.admob[Platform.OS].banner} />
     </View>
   );
 }
