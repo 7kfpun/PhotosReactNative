@@ -12,6 +12,7 @@ import {
 
 // 3rd party libraries
 import { Actions, ActionConst } from 'react-native-router-flux';
+import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import PasswordGesture from 'react-native-gesture-password';
 import store from 'react-native-simple-store';
 
@@ -141,6 +142,7 @@ export default class PasswordView extends React.Component {
   }
 
   render() {
+    GoogleAnalytics.trackScreenView('password');
     return (
       <View style={styles.container}>
         <PasswordGesture

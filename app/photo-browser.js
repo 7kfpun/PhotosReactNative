@@ -9,7 +9,8 @@ import {
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
-import DeviceInfo from 'react-native-device-info';
+import { AdMobInterstitial } from 'react-native-admob';
+import Device from 'react-native-device-detection';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import PasscodeAuth from 'react-native-passcode-auth';
 import PhotoBrowser from 'react-native-photo-browser';  // eslint-disable-line import/no-named-as-default,import/no-named-as-default-member
@@ -19,6 +20,8 @@ import Sound from 'react-native-sound';
 // Component
 import AdmobCell from './admob';
 
+import { config } from './config';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -26,6 +29,10 @@ const styles = StyleSheet.create({
 });
 
 export default class PhotoBrowserView extends React.Component {
+  componentDidMount() {
+    // this.showAdInterstitial();
+  }
+
   onShare(media, index) {
     console.log(media, index);
     Share.open({
@@ -36,6 +43,12 @@ export default class PhotoBrowserView extends React.Component {
     }, (e) => {
       console.log(e);
     });
+  }
+
+  showAdInterstitial() {
+    const adUnitID = Platform.OS === 'ios' ? config.admob.ios.interstital : config.admob.android.interstital;
+    AdMobInterstitial.setAdUnitID(adUnitID);
+    AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd((error) => error && console.log('AdMobInterstitial', error)));
   }
 
   backHandler() {
@@ -90,9 +103,8 @@ export default class PhotoBrowserView extends React.Component {
           startOnGrid={false}
           enableGrid={true}
           onActionButton={(media, index) => this.onShare(media, index)}
-          itemPerRow={DeviceInfo.getModel().indexOf('iPad') !== -1 ? 8 : 4}
+          itemPerRow={Device.isTablet ? 8 : 4}
         />
-
         <AdmobCell />
       </View>
     );

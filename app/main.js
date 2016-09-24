@@ -15,6 +15,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import CameraRollPicker from 'react-native-camera-roll-picker';
 import Collapsible from 'react-native-collapsible';
+import Device from 'react-native-device-detection';
 import DeviceInfo from 'react-native-device-info';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -243,7 +244,7 @@ export default class MainView extends Component {
 
         <CameraRollPicker
           callback={(images) => this.getSelectedImages(images)}
-          imagesPerRow={DeviceInfo.getModel().indexOf('iPad') !== -1 ? 8 : 4}
+          imagesPerRow={Device.isTablet ? 8 : 4}
           backgroundColor="#212121"
           maximum={100}
           selected={this.state.images}
