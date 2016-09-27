@@ -42,7 +42,10 @@ Pick the photos you want to share with your friends on Look Lock before giving a
 
 * [react-native-admob](https://github.com/sbugert/react-native-admob) - A react-native component for Google AdMob banners.
 * [react-native-camera-roll-picker](https://github.com/jeanpan/react-native-camera-roll-picker) - A React Native component providing images selection from camera roll.
+* [react-native-collapsible](https://github.com/oblador/react-native-collapsible) - Animated collapsible component for React Native, good for accordions, toggles etc.
+* [react-native-device-detection](https://github.com/m0ngr31/react-native-device-detection).
 * [react-native-device-info](https://github.com/rebeccahughes/react-native-device-info) - Device Information for React Native iOS and Android.
+* [react-native-gesture-password](https://github.com/Spikef/react-native-gesture-password) - A gesture password component for React Native. It supports both iOS and Android since it's written in pure JavaScript.
 * [react-native-google-analytics-bridge](https://github.com/idehub/react-native-google-analytics-bridge) - React Native bridge to the Google Analytics libraries on both iOS and Android.
 * [react-native-navbar](https://github.com/Kureev/react-native-navbar) - Navbar component for React Native.
 * [react-native-passcode-auth](https://github.com/naoufal/react-native-passcode-auth) - React Native authentication with iOS Passcode.
@@ -50,7 +53,8 @@ Pick the photos you want to share with your friends on Look Lock before giving a
 * [react-native-router-flux](https://github.com/aksonov/react-native-router-flux) - React Native Router based on new React Native Navigation API.
 * [react-native-share](https://github.com/EstebanFuentealba/react-native-share) - Share Social , Sending Simple Data to Other Apps.
 * [react-native-simple-store](https://github.com/jasonmerino/react-native-simple-store) - A minimalistic wrapper around React Native's AsyncStorage.
-* [react-native-touch-id](https://github.com/naoufal/react-native-touch-id) - React Native authentication with the native Touch ID popup.
+* [react-native-sound](https://github.com/zmxv/react-native-sound) - React Native module for playing sound clips.
+* [react-native-tableview-simple](https://github.com/Purii/react-native-tableview-simple) - Flexible and lightweight React Native component for UITableView made with pure CSS.
 * [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) - 3000 Customizable Icons for React Native with support for NavBar/TabBar/ToolbarAndroid, image source and full stying.
 
 ## Additional
