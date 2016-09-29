@@ -8,6 +8,22 @@
     "release-android": "cd android && ./gradlew assembleRelease && cd ..",
     "clean-android": "cd android && ./gradlew clean"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7kfpun/PhotosReactNative.git"
+  },
+  "keywords": [
+    "react-native",
+    "android",
+    "ios",
+    "look lock"
+  ],
+  "author": "kf <7kfpun@gmail.com> (https://github.com/7kfpun)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/7kfpun/PhotosReactNative/issues"
+  },
+  "homepage": "https://github.com/7kfpun/PhotosReactNative#readme",
   "dependencies": {
     "react": "15.3.1",
     "react-native": "^0.33.0",
@@ -29,10 +45,10 @@
     "react-native-vector-icons": "^2.1.0"
   },
   "devDependencies": {
-    "eslint": "^3.4.0",
-    "eslint-config-airbnb": "^11.0.0",
-    "eslint-plugin-import": "^1.14.0",
-    "eslint-plugin-jsx-a11y": "^2.2.1",
-    "eslint-plugin-react": "^6.2.0"
+    "eslint": "^3.6.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0"
   }
 }

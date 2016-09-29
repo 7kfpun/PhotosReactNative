@@ -114,15 +114,16 @@ export default class MainView extends Component {
 
     this.state = {
       images: [],
-      modalVisible: false,
+      isModalVisible: false,
     };
   }
 
   componentDidMount() {
+    const that = this;
     store.get('images')
-    .then(images => {
+    .then((images) => {
       if (images) {
-        this.setState({
+        that.setState({
           images,
           key: Math.random(),
         });
@@ -141,18 +142,20 @@ export default class MainView extends Component {
   }
 
   setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
+    this.setState({ isModalVisible: visible });
   }
 
   getSelectedImages(images) {
     console.log(images);
-    const tempImages = images.map((item) => Object.assign({ photo: item.uri }, item));
+    const tempImages = images.map(item => Object.assign({ photo: item.uri }, item));
     this.setState({ images: tempImages });
     store.save('images', tempImages);
   }
 
   clearImages() {
-    this.setState({ images: [] });
+    this.setState({
+      images: [],
+    });
     store.save('images', []);
   }
 
@@ -194,7 +197,7 @@ export default class MainView extends Component {
               { title: 'Info', iconName: 'md-information-circle', iconColor: 'white', show: 'always' },
             ]
           }
-          onActionSelected={(position) => this.onActionSelected(position)}
+          onActionSelected={position => this.onActionSelected(position)}
         />
       );
     }
@@ -207,15 +210,15 @@ export default class MainView extends Component {
         {this.renderToolbar()}
 
         <Modal
-          animationType={"fade"}
+          animationType="fade"
           transparent={true}
-          visible={this.state.modalVisible}
+          visible={this.state.isModalVisible}
           onRequestClose={() => this.setModalVisible(false)}
         >
           <TouchableHighlight
             style={styles.fullPreview}
-            onPress={() => this.setModalVisible(!this.state.modalVisible)}
-            onPressIn={() => this.setModalVisible(!this.state.modalVisible)}
+            onPress={() => this.setModalVisible(!this.state.isModalVisible)}
+            onPressIn={() => this.setModalVisible(!this.state.isModalVisible)}
           >
             <Image
               style={styles.fullImage}
@@ -247,7 +250,7 @@ export default class MainView extends Component {
 
         <View style={styles.rollPicker}>
           <CameraRollPicker
-            callback={(images) => this.getSelectedImages(images)}
+            callback={images => this.getSelectedImages(images)}
             imagesPerRow={Device.isTablet ? 8 : 4}
             backgroundColor="#212121"
             maximum={100}

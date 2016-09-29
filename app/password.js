@@ -85,7 +85,7 @@ export default class PasswordView extends React.Component {
       }
     } else {
       store.get('password')
-      .then(savedPassword => {
+      .then((savedPassword) => {
         if (password === savedPassword) {
           this.setState({
             status: 'right',
@@ -150,7 +150,7 @@ export default class PasswordView extends React.Component {
           status={this.state.status}
           message={this.state.message}
           onStart={() => this.onStart()}
-          onEnd={(password) => this.onEnd(password)}
+          onEnd={password => this.onEnd(password)}
           normalColor="#B366FF"
           rightColor="#B366FF"
         />

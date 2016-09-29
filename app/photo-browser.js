@@ -47,7 +47,7 @@ export default class PhotoBrowserView extends React.Component {
 
   showAdInterstitial() {
     AdMobInterstitial.setAdUnitID(config.admob[Platform.OS].interstital);
-    AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd((error) => error && console.log('AdMobInterstitial', error)));
+    AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log('AdMobInterstitial', error)));
   }
 
   backHandler() {
@@ -71,15 +71,15 @@ export default class PhotoBrowserView extends React.Component {
         .then(() => {
           const reason = 'You need to be the owner of the device.';
           PasscodeAuth.authenticate(reason)
-          .then(success => {
+          .then((success) => {
             console.log('Authenticated Successfully', success);
             vibrateSoundPop();
           })
-          .catch(eerror => {
+          .catch((eerror) => {
             console.log('Authentication Failed', eerror);
           });
         })
-        .catch(error => {
+        .catch((error) => {
           console.log('PasscodeAuth not supported', error);
           vibrateSoundPop();
         });

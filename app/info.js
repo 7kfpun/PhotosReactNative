@@ -67,7 +67,7 @@ export default class SettingsView extends Component {
 
   componentDidMount() {
     store.get('images')
-    .then(images => {
+    .then((images) => {
       if (images) {
         this.setState({ images });
       }
