@@ -285,7 +285,16 @@ export default class MainView extends Component {
             }}
             underlayColor="#424242"
           >
-            <Text style={styles.startText}>Start your Photo Gallery</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Icon
+                style={{ marginRight: 5 }}
+                name="ios-paper-plane-outline"
+                size={26}
+                color="#B366FF"
+                onPress={Actions.info}
+              />
+              <Text style={styles.startText}>Start your Photo Gallery</Text>
+            </View>
           </TouchableHighlight>
         </Collapsible>
       </View>

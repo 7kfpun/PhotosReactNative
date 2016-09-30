@@ -3,6 +3,7 @@ import {
   Linking,
   Platform,
   StyleSheet,
+  ScrollView,
   View,
 } from 'react-native';
 
@@ -13,6 +14,7 @@ import DeviceInfo from 'react-native-device-info';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
+import Share from 'react-native-share';
 
 // Component
 import AdmobCell from './admob';
@@ -49,6 +51,17 @@ const styles = StyleSheet.create({
 });
 
 export default class InfoView extends Component {
+  onShareApp() {
+    Share.open({
+      title: 'Look Lock',
+      message: 'Look Lock - Show photos without worries.',
+      url: 'http://onelink.to/kzb9bx',
+      // subject: 'Share Link',
+    }, (e) => {
+      console.log(e);
+    });
+  }
+
   renderToolbar() {
     if (Platform.OS === 'ios') {
       return (
@@ -82,52 +95,62 @@ export default class InfoView extends Component {
       <View style={styles.container}>
         {this.renderToolbar()}
 
-        <TableView>
-          <Section header={'Info'}>
-            <Cell
-              cellStyle="RightDetail"
-              title={'Version'}
-              detail={`${DeviceInfo.getVersion()} (${DeviceInfo.getBuildNumber()})`}
-            />
-            <Cell
-              cellStyle="Basic"
-              title={'Rate us'}
-              onPress={() => {
-                if (Platform.OS === 'ios') {
-                  Linking.openURL('itms-apps://itunes.apple.com/app/id1151863742');
-                } else if (Platform.OS === 'android') {
-                  Linking.openURL('market://details?id=com.kfpun.photos');
-                }
-                GoogleAnalytics.trackEvent('user-action', 'open-url', { label: 'rate-us' });
-              }}
-            />
-            <Cell
-              cellStyle="Basic"
-              title={'Source code'}
-              onPress={() => {
-                Linking.openURL('https://github.com/7kfpun/PhotosReactNative');
-                GoogleAnalytics.trackEvent('user-action', 'open-url', { label: 'open-source' });
-              }}
-            />
-          </Section>
+        <ScrollView>
+          <TableView>
+            <Section header={'Info'}>
+              <Cell
+                cellStyle="RightDetail"
+                title={'Version'}
+                detail={`${DeviceInfo.getReadableVersion()}`}
+              />
+            </Section>
 
-          <Section header={'Others'}>
-            <Cell
-              cellStyle="Basic"
-              title={'View more by this developer'}
-              onPress={() => {
-                if (Platform.OS === 'ios') {
-                  Linking.openURL('https://itunes.apple.com/us/developer/kf-pun/id1116896894');
-                } else if (Platform.OS === 'android') {
-                  Linking.openURL('https://play.google.com/store/apps/developer?id=Kf');
-                }
-                GoogleAnalytics.trackEvent('user-action', 'open-url', { label: 'more-by-developer' });
-              }}
-            />
-          </Section>
-        </TableView>
+            <Section header={'Others'}>
+              <Cell
+                cellStyle="Basic"
+                title={'Share this cool app!'}
+                onPress={() => {
+                  this.onShareApp();
+                  GoogleAnalytics.trackEvent('user-action', 'share-app');
+                }}
+              />
+              <Cell
+                cellStyle="Basic"
+                title={'Rate us'}
+                onPress={() => {
+                  if (Platform.OS === 'ios') {
+                    Linking.openURL('itms-apps://itunes.apple.com/app/id1151863742');
+                  } else if (Platform.OS === 'android') {
+                    Linking.openURL('market://details?id=com.kfpun.photos');
+                  }
+                  GoogleAnalytics.trackEvent('user-action', 'open-url', { label: 'rate-us' });
+                }}
+              />
+              <Cell
+                cellStyle="Basic"
+                title={'Source code'}
+                onPress={() => {
+                  Linking.openURL('https://github.com/7kfpun/PhotosReactNative');
+                  GoogleAnalytics.trackEvent('user-action', 'open-url', { label: 'open-source' });
+                }}
+              />
+              <Cell
+                cellStyle="Basic"
+                title={'View more by this developer'}
+                onPress={() => {
+                  if (Platform.OS === 'ios') {
+                    Linking.openURL('https://itunes.apple.com/us/developer/kf-pun/id1116896894');
+                  } else if (Platform.OS === 'android') {
+                    Linking.openURL('https://play.google.com/store/apps/developer?id=Kf');
+                  }
+                  GoogleAnalytics.trackEvent('user-action', 'open-url', { label: 'more-by-developer' });
+                }}
+              />
+            </Section>
+          </TableView>
 
-        <AdmobCell />
+          <AdmobCell bannerSize="mediumRectangle" />
+        </ScrollView>
       </View>
     );
   }

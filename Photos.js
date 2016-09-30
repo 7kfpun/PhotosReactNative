@@ -20,7 +20,8 @@ import { config } from './app/config';
 
 GoogleAnalytics.setTrackerId(config.googleAnalytics[Platform.OS]);
 
-if (DeviceInfo.getDeviceName() === 'iPhone Simulator' || DeviceInfo.getManufacturer() === 'Genymotion') {
+if (DeviceInfo.getDeviceName() === 'iPhone Simulator' || DeviceInfo.getDeviceName() === 'apple’s MacBook Pro' || DeviceInfo.getManufacturer() === 'Genymotion') {
+  console.log('GoogleAnalytics setDryRun');
   GoogleAnalytics.setDryRun(true);
 }
 

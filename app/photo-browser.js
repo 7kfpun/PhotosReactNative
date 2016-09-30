@@ -29,10 +29,6 @@ const styles = StyleSheet.create({
 });
 
 export default class PhotoBrowserView extends React.Component {
-  componentDidMount() {
-    // this.showAdInterstitial();
-  }
-
   onShare(media, index) {
     console.log(media, index);
     Share.open({
@@ -76,6 +72,10 @@ export default class PhotoBrowserView extends React.Component {
           .then((success) => {
             console.log('Authenticated Successfully', success);
             vibrateSoundPop();
+            if (Math.random() > 0.9) {
+              this.showAdInterstitial();
+              GoogleAnalytics.trackEvent('system-action', 'show-ad-interstitial');
+            }
           })
           .catch((eerror) => {
             console.log('Authentication Failed', eerror);
