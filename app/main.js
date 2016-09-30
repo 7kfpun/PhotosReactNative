@@ -24,6 +24,9 @@ import store from 'react-native-simple-store';
 // Component
 import AdmobCell from './admob';
 
+const IMAGE_PER_ROW_PHONE = 4;
+const IMAGE_PER_ROW_TABLET = 8;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -82,8 +85,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     borderWidth: StyleSheet.hairlineWidth * 2,
     borderColor: '#B366FF',
-    width: Device.isTablet ? (Dimensions.get('window').width / 8) - 6 : (Dimensions.get('window').width / 4) - 6,
-    height: Device.isTablet ? (Dimensions.get('window').width / 8) - 6 : (Dimensions.get('window').width / 4) - 6,
+    width: Device.isTablet ? (Dimensions.get('window').width / IMAGE_PER_ROW_TABLET) - 6 : (Dimensions.get('window').width / IMAGE_PER_ROW_PHONE) - 6,
+    height: Device.isTablet ? (Dimensions.get('window').width / IMAGE_PER_ROW_TABLET) - 6 : (Dimensions.get('window').width / IMAGE_PER_ROW_PHONE) - 6,
   },
   marker: {
     margin: 5,
@@ -143,6 +146,9 @@ export default class MainView extends Component {
 
   setModalVisible(visible) {
     this.setState({ isModalVisible: visible });
+    if (visible) {
+      GoogleAnalytics.trackEvent('user-action', 'preview-image');
+    }
   }
 
   getSelectedImages(images) {
@@ -157,6 +163,7 @@ export default class MainView extends Component {
       images: [],
     });
     store.save('images', []);
+    GoogleAnalytics.trackEvent('user-action', 'clear-images');
   }
 
   renderToolbar() {
@@ -251,7 +258,7 @@ export default class MainView extends Component {
         <View style={styles.rollPicker}>
           <CameraRollPicker
             callback={images => this.getSelectedImages(images)}
-            imagesPerRow={Device.isTablet ? 8 : 4}
+            imagesPerRow={Device.isTablet ? IMAGE_PER_ROW_TABLET : IMAGE_PER_ROW_PHONE}
             backgroundColor="#212121"
             maximum={100}
             selected={this.state.images}
@@ -273,6 +280,7 @@ export default class MainView extends Component {
                 } else if (Platform.OS === 'android') {
                   Actions.password({ images: this.state.images });
                 }
+                GoogleAnalytics.trackEvent('user-action', 'start-gallery', { label: 'gallery', value: this.state.images.length });
               }
             }}
             underlayColor="#424242"

@@ -3,24 +3,16 @@ import {
   Linking,
   Platform,
   StyleSheet,
-  // Switch,
   View,
-  // Text,
 } from 'react-native';
 
 // 3rd party libraries
 import { Actions } from 'react-native-router-flux';
+import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import DeviceInfo from 'react-native-device-info';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
-import store from 'react-native-simple-store';
-import {
-  Cell,
-  Section,
-  TableView,
-  // CustomCell,
-} from 'react-native-tableview-simple';
 
 // Component
 import AdmobCell from './admob';
@@ -56,30 +48,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class SettingsView extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      images: [],
-    };
-  }
-
-  componentDidMount() {
-    store.get('images')
-    .then((images) => {
-      if (images) {
-        this.setState({ images });
-      }
-    });
-  }
-
-  onActionSelected(position) {
-    if (position === 0) {  // index of 'Clear all'
-      this.clearImages();
-    }
-  }
-
+export default class InfoView extends Component {
   renderToolbar() {
     if (Platform.OS === 'ios') {
       return (
@@ -108,23 +77,12 @@ export default class SettingsView extends Component {
   }
 
   render() {
-    GoogleAnalytics.trackScreenView('main');
+    GoogleAnalytics.trackScreenView('info');
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
 
         <TableView>
-          {/* <Section header={'Settings'}>
-            <CustomCell>
-              <Text style={styles.text}>Switch</Text>
-              <Switch />
-            </CustomCell>
-            <CustomCell>
-              <Text style={styles.text}>Switch</Text>
-              <Switch />
-            </CustomCell>
-          </Section> */}
-
           <Section header={'Info'}>
             <Cell
               cellStyle="RightDetail"
@@ -140,6 +98,7 @@ export default class SettingsView extends Component {
                 } else if (Platform.OS === 'android') {
                   Linking.openURL('market://details?id=com.kfpun.photos');
                 }
+                GoogleAnalytics.trackEvent('user-action', 'open-url', { label: 'rate-us' });
               }}
             />
             <Cell
@@ -147,6 +106,7 @@ export default class SettingsView extends Component {
               title={'Source code'}
               onPress={() => {
                 Linking.openURL('https://github.com/7kfpun/PhotosReactNative');
+                GoogleAnalytics.trackEvent('user-action', 'open-url', { label: 'open-source' });
               }}
             />
           </Section>
@@ -161,6 +121,7 @@ export default class SettingsView extends Component {
                 } else if (Platform.OS === 'android') {
                   Linking.openURL('https://play.google.com/store/apps/developer?id=Kf');
                 }
+                GoogleAnalytics.trackEvent('user-action', 'open-url', { label: 'more-by-developer' });
               }}
             />
           </Section>
@@ -172,10 +133,10 @@ export default class SettingsView extends Component {
   }
 }
 
-SettingsView.propTypes = {
+InfoView.propTypes = {
   title: React.PropTypes.string,
 };
 
-SettingsView.defaultProps = {
+InfoView.defaultProps = {
   title: '',
 };

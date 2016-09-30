@@ -95,11 +95,13 @@ export default class PasswordView extends React.Component {
 
           store.delete('password');
           Actions.main({ type: ActionConst.RESET });
+          GoogleAnalytics.trackEvent('user-action', 'input-password', { label: 'right' });
         } else {
           this.setState({
             status: 'wrong',
             message: 'Password is wrong, try again.',
           });
+          GoogleAnalytics.trackEvent('user-action', 'input-password', { label: 'wrong' });
         }
       });
 
@@ -165,10 +167,11 @@ export default class PasswordView extends React.Component {
                 { text: 'Cancel', onPress: () => true },
                 { text: 'Exit app', onPress: () => BackAndroid.exitApp() },
                 {
-                  text: 'Continue with photos',
+                  text: 'Continue with the photos',
                   onPress: () => {
                     Actions.photoBrowser({ images: this.props.images });
                     this.onReset();
+                    GoogleAnalytics.trackEvent('user-action', 'continue-with-photos');
                   },
                 },
               ]
@@ -176,7 +179,7 @@ export default class PasswordView extends React.Component {
           }}
           underlayColor="#424242"
         >
-          <Text style={styles.text}>Hand the phone back or exit the app</Text>
+          <Text style={styles.text}>Hand the phone back or continue with the photos.</Text>
         </TouchableHighlight>}
       </View>
     );

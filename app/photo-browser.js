@@ -43,6 +43,7 @@ export default class PhotoBrowserView extends React.Component {
     }, (e) => {
       console.log(e);
     });
+    GoogleAnalytics.trackEvent('user-action', 'share-gallery-image');
   }
 
   showAdInterstitial() {
@@ -64,6 +65,7 @@ export default class PhotoBrowserView extends React.Component {
       });
 
       Actions.pop();
+      GoogleAnalytics.trackEvent('user-action', 'finish-gallery');
     };
 
     if (Platform.OS === 'ios') {
