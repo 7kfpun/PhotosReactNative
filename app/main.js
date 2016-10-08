@@ -268,7 +268,7 @@ export default class MainView extends Component {
           />
         </View>
 
-        <AdmobCell />
+        <AdmobCell backgroundColor="#212121" />
 
         <Collapsible key={this.state.key} collapsed={this.state.images.length === 0}>
           <TouchableHighlight

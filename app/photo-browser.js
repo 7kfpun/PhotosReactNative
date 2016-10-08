@@ -107,7 +107,7 @@ export default class PhotoBrowserView extends React.Component {
           onActionButton={(media, index) => this.onShare(media, index)}
           itemPerRow={Device.isTablet ? 8 : 4}
         />
-        <AdmobCell />
+        <AdmobCell backgroundColor="#212121" />
       </View>
     );
   }

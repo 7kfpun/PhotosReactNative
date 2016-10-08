@@ -14,21 +14,21 @@ import { config } from './config';
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    backgroundColor: '#212121',
   },
 });
 
 function AdmobCell(props) {
   return (
-    <View style={[styles.container, { margin: props.margin }]}>
+    <View style={[styles.container, { margin: props.margin, backgroundColor: props.backgroundColor }]}>
       <AdMobBanner bannerSize={props.bannerSize} adUnitID={config.admob[Platform.OS].banner} />
     </View>
   );
 }
 
 AdmobCell.propTypes = {
-  margin: React.PropTypes.number,
   bannerSize: React.PropTypes.string,
+  margin: React.PropTypes.number,
+  backgroundColor: React.PropTypes.string,
 };
 
 AdmobCell.defaultProps = {
