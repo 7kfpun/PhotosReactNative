@@ -103,6 +103,7 @@ export default class PhotoBrowserView extends React.Component {
           displayActionButton={true}
           startOnGrid={false}
           enableGrid={true}
+          useGallery={true}
           onActionButton={(media, index) => this.onShare(media, index)}
           itemPerRow={Device.isTablet ? 8 : 4}
         />

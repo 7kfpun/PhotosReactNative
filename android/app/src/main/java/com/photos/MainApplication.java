@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.image.zoom.ReactImageZoom;
 import com.oblador.vectoricons.VectorIconsPackage;
 import cl.json.RNSharePackage;
 import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
@@ -30,6 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactImageZoom(),
             new VectorIconsPackage(),
             new RNSharePackage(),
             new GoogleAnalyticsBridgePackage(),

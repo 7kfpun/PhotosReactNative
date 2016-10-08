@@ -36,7 +36,7 @@
     "react-native-google-analytics-bridge": "^3.1.0",
     "react-native-navbar": "^1.5.4",
     "react-native-passcode-auth": "git+https://github.com/domoconnell/react-native-passcode-auth.git",
-    "react-native-photo-browser": "^0.2.2",
+    "react-native-photo-browser": "github:ksti/react-native-photo-browser",
     "react-native-router-flux": "^3.35.0",
     "react-native-share": "^1.0.14",
     "react-native-simple-store": "^1.1.0",
