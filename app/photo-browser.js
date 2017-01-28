@@ -20,8 +20,6 @@ import Sound from 'react-native-sound';
 // Component
 import AdmobCell from './admob';
 
-import { config } from './config';
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -29,6 +27,14 @@ const styles = StyleSheet.create({
 });
 
 export default class PhotoBrowserView extends React.Component {
+  componentDidMount() {
+    if (Math.random() > 0.2) {
+      this.showAdInterstitial();
+      console.log('Show ad interstitial');
+      GoogleAnalytics.trackEvent('system-action', 'show-ad-interstitial');
+    }
+  }
+
   onShare(media, index) {
     console.log(media, index);
     Share.open({
@@ -43,7 +49,6 @@ export default class PhotoBrowserView extends React.Component {
   }
 
   showAdInterstitial() {
-    AdMobInterstitial.setAdUnitID(config.admob[Platform.OS].interstital);
     AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log('AdMobInterstitial', error)));
   }
 
@@ -67,13 +72,14 @@ export default class PhotoBrowserView extends React.Component {
     if (Platform.OS === 'ios') {
       PasscodeAuth.isSupported()
         .then(() => {
-          const reason = 'You need to be the owner of the device.';
+          const reason = 'You have to be the owner of the device.';
           PasscodeAuth.authenticate(reason)
           .then((success) => {
             console.log('Authenticated Successfully', success);
             vibrateSoundPop();
-            if (Math.random() > 0.9) {
+            if (Math.random() > 0.8) {
               this.showAdInterstitial();
+              console.log('Show ad interstitial');
               GoogleAnalytics.trackEvent('system-action', 'show-ad-interstitial');
             }
           })

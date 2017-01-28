@@ -18,8 +18,6 @@ import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import PasswordGesture from 'react-native-gesture-password';
 import store from 'react-native-simple-store';
 
-import { config } from './config';
-
 let firstPassword = '';
 
 const styles = StyleSheet.create({
@@ -102,7 +100,7 @@ export default class PasswordView extends React.Component {
 
           store.delete('password');
           Actions.main({ type: ActionConst.RESET });
-          if (Math.random() > 0.9) {
+          if (Math.random() > 0.5) {
             this.showAdInterstitial();
             GoogleAnalytics.trackEvent('system-action', 'show-ad-interstitial');
           }
@@ -148,7 +146,6 @@ export default class PasswordView extends React.Component {
   }
 
   showAdInterstitial() {
-    AdMobInterstitial.setAdUnitID(config.admob[Platform.OS].interstital);
     AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd(error => error && console.log('AdMobInterstitial', error)));
   }
 

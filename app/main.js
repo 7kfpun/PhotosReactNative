@@ -27,6 +27,9 @@ import AdmobCell from './admob';
 const IMAGE_PER_ROW_PHONE = 4;
 const IMAGE_PER_ROW_TABLET = 8;
 
+let OFFSETY;
+const THRESHOLD = Platform.OS === 'ios' ? 40 : 20;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -52,7 +55,6 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   preview: {
-    flex: 1,
     paddingHorizontal: 5,
     backgroundColor: '#424242',
   },
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
   },
   fullPreview: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.8)',
+    backgroundColor: 'rgba(0,0,0,0.9)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -118,6 +120,7 @@ export default class MainView extends Component {
     this.state = {
       images: [],
       isModalVisible: false,
+      isSelectedShow: true,
     };
   }
 
@@ -128,7 +131,8 @@ export default class MainView extends Component {
       if (images) {
         that.setState({
           images,
-          key: Math.random(),
+          key0: Math.random(),
+          key1: Math.random(),
         });
       }
     });
@@ -151,8 +155,9 @@ export default class MainView extends Component {
     }
   }
 
-  getSelectedImages(images) {
-    console.log(images);
+  getSelectedImages(images, current) {
+    console.log(current);
+    // console.log(images);
     const tempImages = images.map(item => Object.assign({ photo: item.uri }, item));
     this.setState({ images: tempImages });
     store.save('images', tempImages);
@@ -161,6 +166,7 @@ export default class MainView extends Component {
   clearImages() {
     this.setState({
       images: [],
+      key0: Math.random(),
     });
     store.save('images', []);
     GoogleAnalytics.trackEvent('user-action', 'clear-images');
@@ -169,25 +175,27 @@ export default class MainView extends Component {
   renderToolbar() {
     if (Platform.OS === 'ios') {
       return (
-        <NavigationBar
-          statusBar={{ tintColor: '#212121', style: 'light-content' }}
-          style={styles.navigatorBarIOS}
-          title={{ title: this.props.title, tintColor: '#F5F5F5' }}
-          leftButton={
-            <Icon
-              style={styles.navigatorLeftButton}
-              name="ios-information-circle-outline"
-              size={26}
-              color="white"
-              onPress={Actions.info}
-            />
-          }
-          rightButton={{
-            title: this.state.images.length > 0 ? 'Clear all' : '',
-            tintColor: '#69BBFF',
-            handler: () => this.clearImages(),
-          }}
-        />
+        <Collapsible collapsed={!this.state.isSelectedShow} duration={600} collapsedHeight={20}>
+          <NavigationBar
+            statusBar={{ tintColor: '#212121', style: 'light-content' }}
+            style={styles.navigatorBarIOS}
+            title={{ title: this.props.title, tintColor: '#F5F5F5' }}
+            leftButton={
+              <Icon
+                style={styles.navigatorLeftButton}
+                name="ios-information-circle-outline"
+                size={26}
+                color="white"
+                onPress={Actions.info}
+              />
+            }
+            rightButton={{
+              title: this.state.images.length > 0 ? 'Clear all' : '',
+              tintColor: '#69BBFF',
+              handler: () => this.clearImages(),
+            }}
+          />
+        </Collapsible>
       );
     } else if (Platform.OS === 'android') {
       return (
@@ -234,30 +242,33 @@ export default class MainView extends Component {
           </TouchableHighlight>
         </Modal>
 
-        <ScrollView style={styles.preview} horizontal={true}>
-          {this.state.images.length > 0 && this.state.images.map((item, i) => <View key={i} style={styles.imageBlock}>
-            <TouchableHighlight
-              onPress={() => {
-                this.setModalVisible(true);
-                this.setState({ selectedImage: item.uri });
-              }}
-              underlayColor="#424242"
-            >
-              <Image
-                style={styles.image}
-                source={{ uri: item.uri }}
-              />
-            </TouchableHighlight>
-          </View>)}
+        <Collapsible style={{ height: 160 }} collapsed={!this.state.isSelectedShow} duration={600}>
+          <ScrollView style={styles.preview} horizontal={true}>
+            {this.state.images.length > 0 && this.state.images.map((item, i) => <View key={i} style={styles.imageBlock}>
+              <TouchableHighlight
+                onPress={() => {
+                  this.setModalVisible(true);
+                  this.setState({ selectedImage: item.uri });
+                }}
+                underlayColor="#424242"
+              >
+                <Image
+                  style={styles.image}
+                  source={{ uri: item.uri }}
+                />
+              </TouchableHighlight>
+            </View>)}
 
-          {this.state.images.length === 0 && <View style={{ width: Dimensions.get('window').width - 10, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ color: 'white' }}>Select some of your photos</Text>
-          </View>}
-        </ScrollView>
+            {this.state.images.length === 0 && <View style={{ width: Dimensions.get('window').width - 10, justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={{ color: 'white' }}>Pick your photos</Text>
+            </View>}
+          </ScrollView>
+        </Collapsible>
 
         <View style={styles.rollPicker}>
           <CameraRollPicker
-            callback={images => this.getSelectedImages(images)}
+            key={this.state.key0}
+            callback={(images, current) => this.getSelectedImages(images, current)}
             imagesPerRow={Device.isTablet ? IMAGE_PER_ROW_TABLET : IMAGE_PER_ROW_PHONE}
             backgroundColor="#212121"
             maximum={100}
@@ -265,12 +276,26 @@ export default class MainView extends Component {
             selectedMarker={<View style={styles.markerBlock}>
               <Image source={require('../assets/checkmark-circle.png')} style={styles.marker} />
             </View>}
+            onScroll={(event) => {
+              if (event.nativeEvent.contentOffset.y < THRESHOLD) {
+                this.setState({ isSelectedShow: true });
+              } else if (event.nativeEvent.contentOffset.y - OFFSETY > THRESHOLD) {
+                console.log('onScroll UP');
+                this.setState({ isSelectedShow: false });
+              } else if (OFFSETY - event.nativeEvent.contentOffset.y > THRESHOLD) {
+                console.log('onScroll DOWN');
+                this.setState({ isSelectedShow: true });
+              }
+              OFFSETY = event.nativeEvent.contentOffset.y;
+            }}
+            scrollEventThrottle={500}
+            emptyText="Loading..."
           />
         </View>
 
         <AdmobCell backgroundColor="#212121" />
 
-        <Collapsible key={this.state.key} collapsed={this.state.images.length === 0}>
+        <Collapsible key={this.state.key1} collapsed={this.state.images.length === 0}>
           <TouchableHighlight
             style={styles.footer}
             onPress={() => {
