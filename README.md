@@ -12,6 +12,7 @@ Pick the photos you want to share with your friends on Look Lock before giving a
 
 [![App Store Button](assets/app-store.png "App Store Button")](https://itunes.apple.com/us/app/look-lock-show-photos-without/id1151863742)
 [![Play Store Button](assets/google-play.png "Google Play Button")](https://play.google.com/store/apps/details?id=com.kfpun.photos)
+[![Apk Download Button](assets/apk-download.png "Apk Download Button")](https://github.com/7kfpun/PhotosReactNative/releases/download/v1.0.7/app-release.apk)
 
 ## Screenshots
 

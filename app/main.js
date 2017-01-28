@@ -131,8 +131,7 @@ export default class MainView extends Component {
       if (images) {
         that.setState({
           images,
-          key0: Math.random(),
-          key1: Math.random(),
+          key: Math.random(),
         });
       }
     });
@@ -166,7 +165,6 @@ export default class MainView extends Component {
   clearImages() {
     this.setState({
       images: [],
-      key0: Math.random(),
     });
     store.save('images', []);
     GoogleAnalytics.trackEvent('user-action', 'clear-images');
@@ -190,7 +188,7 @@ export default class MainView extends Component {
               />
             }
             rightButton={{
-              title: this.state.images.length > 0 ? 'Clear all' : '',
+              title: this.state.images && this.state.images.length > 0 ? 'Clear all' : '',
               tintColor: '#69BBFF',
               handler: () => this.clearImages(),
             }}
@@ -223,7 +221,6 @@ export default class MainView extends Component {
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
-
         <Modal
           animationType="fade"
           transparent={true}
@@ -244,7 +241,7 @@ export default class MainView extends Component {
 
         <Collapsible style={{ height: 160 }} collapsed={!this.state.isSelectedShow} duration={600}>
           <ScrollView style={styles.preview} horizontal={true}>
-            {this.state.images.length > 0 && this.state.images.map((item, i) => <View key={i} style={styles.imageBlock}>
+            {this.state.images && this.state.images.length > 0 && this.state.images.map((item, i) => <View key={i} style={styles.imageBlock}>
               <TouchableHighlight
                 onPress={() => {
                   this.setModalVisible(true);
@@ -259,7 +256,8 @@ export default class MainView extends Component {
               </TouchableHighlight>
             </View>)}
 
-            {this.state.images.length === 0 && <View style={{ width: Dimensions.get('window').width - 10, justifyContent: 'center', alignItems: 'center' }}>
+            {(!this.state.images || (this.state.images && this.state.images.length === 0))
+            && <View style={{ width: Dimensions.get('window').width - 10, justifyContent: 'center', alignItems: 'center' }}>
               <Text style={{ color: 'white' }}>Pick your photos</Text>
             </View>}
           </ScrollView>
@@ -267,7 +265,6 @@ export default class MainView extends Component {
 
         <View style={styles.rollPicker}>
           <CameraRollPicker
-            key={this.state.key0}
             callback={(images, current) => this.getSelectedImages(images, current)}
             imagesPerRow={Device.isTablet ? IMAGE_PER_ROW_TABLET : IMAGE_PER_ROW_PHONE}
             backgroundColor="#212121"
@@ -295,7 +292,7 @@ export default class MainView extends Component {
 
         <AdmobCell backgroundColor="#212121" />
 
-        <Collapsible key={this.state.key1} collapsed={this.state.images.length === 0}>
+        <Collapsible key={this.state.key} collapsed={!this.state.images || (this.state.images && this.state.images.length === 0)}>
           <TouchableHighlight
             style={styles.footer}
             onPress={() => {

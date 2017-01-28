@@ -40,3 +40,6 @@ buck-out/
 android/app/libs
 android/keystores/debug.keystore
 *.keystore
+
+# App
+app/config.js
