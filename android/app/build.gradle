@@ -87,11 +87,11 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.photos"
+        applicationId "com.kfpun.photos"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 14
+        versionName "1.0.7"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -104,10 +104,19 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            storeFile file(PHOTOS_RELEASE_STORE_FILE)
+            storePassword PHOTOS_RELEASE_STORE_PASSWORD
+            keyAlias PHOTOS_RELEASE_KEY_ALIAS
+            keyPassword PHOTOS_RELEASE_KEY_PASSWORD
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release

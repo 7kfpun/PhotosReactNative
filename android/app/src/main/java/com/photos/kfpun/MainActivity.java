@@ -1,4 +1,4 @@
-package com.photos;
+package com.kfpun.photos;
 
 import com.facebook.react.ReactActivity;
 

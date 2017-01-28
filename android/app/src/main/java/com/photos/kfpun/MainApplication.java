@@ -1,4 +1,4 @@
-package com.photos;
+package com.kfpun.photos;
 
 import android.app.Application;
 import android.util.Log;
