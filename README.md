@@ -4,7 +4,7 @@
 
 Look Lock App written in [React Native](https://github.com/facebook/react-native) (available both iOS and Android).
 
-Goodbye to nosy swipers!  
+Goodbye to nosy swipers!
 
 Pick the photos you want to share with your friends on Look Lock before giving away your mobile. Your friends will only see those you picked, and the rest are protected!
 
@@ -16,23 +16,11 @@ Pick the photos you want to share with your friends on Look Lock before giving a
 
 ## Screenshots
 
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPhone0.png" width="200">
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPhone1.png" width="200">
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPhone2.png" width="200">
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPhone3.png" width="200">
-<br />
+<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPhone0.png" width="200"> <img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPhone1.png" width="200"> <img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPhone2.png" width="200"> <img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPhone3.png" width="200">
 
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPad0.png" width="200">
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPad1.png" width="200">
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPad2.png" width="200">
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPad3.png" width="200">
-<br />
+<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPad0.png" width="200"> <img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPad1.png" width="200"> <img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPad2.png" width="200"> <img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotIPad3.png" width="200">
 
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotAndroid0.png" width="200">
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotAndroid1.png" width="200">
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotAndroid2.png" width="200">
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotAndroid3.png" width="200">
-<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotAndroid4.png" width="200">
+<img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotAndroid0.png" width="200"> <img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotAndroid1.png" width="200"> <img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotAndroid2.png" width="200"> <img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotAndroid3.png" width="200"> <img src="https://raw.github.com/7kfpun/PhotosReactNative/master/assets/screenshots/screenshotAndroid4.png" width="200">
 
 ## React and React Native version
 
